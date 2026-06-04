@@ -362,6 +362,10 @@ set(EXTCPPSRC
 	#hard_reset
 	external/hard_reset/main.cpp
 	external/hard_reset/ui_hard_reset.cpp
+
+	#world_radio
+	external/world_radio/main.cpp
+    external/world_radio/ui_world_radio.cpp
 )
 
 set(EXTAPPLIST
@@ -451,6 +455,7 @@ set(EXTAPPLIST
 	two_tone_pager
 	two_tone_rx
 	hard_reset
+	world_radio
 )
 
 # sdusb has type conflicts with PRALINE (HackRF Pro) - add only for non-PRALINE builds
