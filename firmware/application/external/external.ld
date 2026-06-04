@@ -110,6 +110,7 @@ MEMORY
     ram_external_app_two_tone_rx           (rwx) : org = 0xAE050000, len = 32k
     ram_external_app_flex_tx               (rwx) : org = 0xAE060000, len = 32k
     ram_external_app_hard_reset            (rwx) : org = 0xAE070000, len = 32k
+    ram_external_app_world_radio           (rwx) : org = 0xAE080000, len = 32k
 }
 
 SECTIONS
@@ -635,4 +636,9 @@ SECTIONS
         KEEP(*(.external_app.app_hard_reset.application_information));
         *(*ui*external_app*hard_reset*);
     } > ram_external_app_hard_reset
+   .external_app_world_radio : ALIGN(4) SUBALIGN(4)
+    {
+        KEEP(*(.external_app.app_world_radio.application_information));
+        *(*ui*external_app*world_radio*);
+    } > ram_external_app_world_radio
 }
