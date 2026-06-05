@@ -466,4 +466,3 @@ if(NOT BOARD STREQUAL "PRALINE")
        )
        list(APPEND EXTAPPLIST sdusb)
 endif()
-
