@@ -365,7 +365,7 @@ set(EXTCPPSRC
 
 	#world_radio
 	external/world_radio/main.cpp
-    external/world_radio/ui_world_radio.cpp
+	external/world_radio/ui_world_radio.cpp
 )
 
 set(EXTAPPLIST
