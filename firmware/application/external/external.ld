@@ -635,7 +635,7 @@ SECTIONS
     {
         KEEP(*(.external_app.app_hard_reset.application_information));
         *(*ui*external_app*hard_reset*);
-} > ram_external_app_hard_reset
+    } > ram_external_app_hard_reset
 
     .external_app_world_radio : ALIGN(4) SUBALIGN(4)
     {
