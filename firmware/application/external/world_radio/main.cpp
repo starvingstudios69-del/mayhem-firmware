@@ -19,16 +19,20 @@
  * the Free Software Foundation, Inc., 51 Franklin Street,
  * Boston, MA 02110-1301, USA.
  */
+
 #include "ui.hpp"
 #include "ui_world_radio.hpp"
 #include "ui_navigation.hpp"
 #include "external_app.hpp"
+
 namespace ui::external_app::world_radio {
 void initialize_app(NavigationView& nav) {
     nav.push<WorldRadioView>();
 }
 }  // namespace ui::external_app::world_radio
+
 extern "C" {
+// Clean literal string target identification for cross-linker compilation mapping
 __attribute__((section(".external_app.app_world_radio.application_information"), used))
 application_information_t _application_information_world_radio = {
     /*.memory_location = */ (uint8_t*)0x00000000,
@@ -37,43 +41,8 @@ application_information_t _application_information_world_radio = {
     /*.app_version = */ VERSION_MD5,
     /*.app_name = */ "World Radio",
     /*.bitmap_data = */ {
-        0xF0,
-        0x0F,
-        0xFE,
-        0x7F,
-        0xFF,
-        0xFF,
-        0x1F,
-        0xF8,
-        0xFF,
-        0xFF,
-        0xFF,
-        0xFF,
-        0x0F,
-        0xF0,
-        0xFF,
-        0xFF,
-        0xFF,
-        0xFF,
-        0xFF,
-        0xFF,
-        0x1F,
-        0xF8,
-        0xFF,
-        0xFF,
-        0xFE,
-        0x7F,
-        0xF0,
-        0x0F,
-        0x00,
-        0x00,
-        0x00,
-        0x00,
-    },
-    /*.icon_color = */ ui::Color::cyan().v,
-    /*.menu_location = */ app_location_t::UTILITIES,
-    /*.desired_menu_position = */ -1,
-    /*.m4_app_tag = portapack::spi_flash::image_tag_none */ {0, 0, 0, 0},
-    /*.m4_app_offset = */ 0x00000000,  // will be filled at compile time
+        0xF0, 0x0F, 0xFE, 0x7F, 0xFF, 0xFF, 0x1F, 0xF8, 0xFF, 0xFF, 0xFF, 0xFF, 0x0F, 0xF0, 0xFF, 0xFF,
+        0xFF, 0xFF, 0xFF, 0xFF, 0x1F, 0xF8, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+    }
 };
-}  // extern "C"
+}
