@@ -36,7 +36,11 @@ namespace ui::external_app::world_radio {
 
 WorldRadioView::WorldRadioView(NavigationView& nav) : nav_{nav} {
     for (int i = 0; i < NUM_COUNTRIES; i++) {
-        countries_[i] = COUNTRY_TABLE[i];
+        countries_[i].code = COUNTRY_TABLE[i].code;
+        countries_[i].name = COUNTRY_TABLE[i].name;
+        countries_[i].region_idx = COUNTRY_TABLE[i].region_idx;
+        countries_[i].scanned = false;
+        countries_[i].files.clear();
     }
     for (int i = 0; i < ROWS; i++) {
         row_btns[i].on_select = [this, i](Button&) {
@@ -195,7 +199,7 @@ void WorldRadioView::on_file_changed(size_t idx) {
 int WorldRadioView::current_country_arr_idx() const {
     if (country_idx_ < 0 || country_idx_ >= (int)region_countries_.size())
         return -1;
-    return region_countries_[country_idx_];
+    return region_countries_[country_idx];
 }
 
 void WorldRadioView::scan_country_files(int arr_idx) {
@@ -472,11 +476,12 @@ void WorldRadioView::tune() {
     receiver_model.set_sampling_rate(3072000);
     receiver_model.set_baseband_bandwidth(1750000);
 
+    // Using explicit firmware engine scoping boundaries
     if (st.is_am) {
-        receiver_model.set_modulation(ReceiverModel::Mode::AMAudio);
+        receiver_model.set_modulation(portapack::ReceiverModel::Mode::AMAudio);
         receiver_model.set_am_configuration(0);
     } else {
-        receiver_model.set_modulation(ReceiverModel::Mode::WidebandFMAudio);
+        receiver_model.set_modulation(portapack::ReceiverModel::Mode::WidebandFMAudio);
         receiver_model.set_wfm_configuration(0);
     }
 
