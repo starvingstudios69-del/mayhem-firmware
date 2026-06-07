@@ -32,17 +32,19 @@ void initialize_app(NavigationView& nav) {
 }  // namespace ui::external_app::world_radio
 
 extern "C" {
-// Clean literal string target identification for cross-linker compilation mapping
 __attribute__((section(".external_app.app_world_radio.application_information"), used))
 application_information_t _application_information_world_radio = {
-    /*.memory_location = */ (uint8_t*)0x00000000,
-    /*.externalAppEntry = */ ui::external_app::world_radio::initialize_app,
-    /*.header_version = */ CURRENT_HEADER_VERSION,
-    /*.app_version = */ VERSION_MD5,
-    /*.app_name = */ "World Radio",
-    /*.bitmap_data = */ {
+    .memory_location   = (uint8_t*)0x00000000,
+    .externalAppEntry  = ui::external_app::world_radio::initialize_app,
+    .header_version    = CURRENT_HEADER_VERSION,
+    .app_version       = VERSION_MD5,
+    .app_name          = "World Radio",
+    .bitmap_data       = {
         0xF0, 0x0F, 0xFE, 0x7F, 0xFF, 0xFF, 0x1F, 0xF8, 0xFF, 0xFF, 0xFF, 0xFF, 0x0F, 0xF0, 0xFF, 0xFF,
         0xFF, 0xFF, 0xFF, 0xFF, 0x1F, 0xF8, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-    }
+    },
+    // Explicitly defining trailing fields to resolve the Python post-processor IndexError
+    .keep_baseband     = false,
+    .baseband_bin      = BASEBAND_TYPE_NONE 
 };
 }
